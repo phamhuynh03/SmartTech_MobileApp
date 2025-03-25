@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#efffef"
+    android:background="#1f472a"
     tools:context=".ModelViewerActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:backgroundTint="#efffef">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/cardView1"
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="match_parent"
             app:cardBackgroundColor="#efffef">
 
             <TextView
@@ -36,15 +36,32 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 app:srcCompat="@drawable/arrow_out" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="540dp"
+            app:cardBackgroundColor="#efffef"
+            app:layout_constraintTop_toBottomOf="@+id/cardView1">
+
+            <ImageView
+                android:id="@+id/centerImageView"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/object_1" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:cardBackgroundColor="#efffef"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3" >
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#1f472a" />
