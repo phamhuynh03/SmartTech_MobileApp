@@ -52,6 +52,52 @@
                 android:layout_height="400dp"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/object_1" />
+
+            <!-- Control elements positioned at the bottom center -->
+           <!-- Control elements positioned at the bottom center -->
+<!-- Control elements positioned at the bottom center -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center_horizontal"
+    android:layout_marginBottom="20dp"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <!-- Centered Joystick -->
+    <FrameLayout
+        android:id="@+id/joystickBase"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/model_controller_base">
+        
+        <View
+            android:id="@+id/joystickHandle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/model_controller_handle" />
+    </FrameLayout>
+
+    <!-- Spacing between elements -->
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="match_parent" />
+    
+    <!-- Custom vertical SeekBar container -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center_vertical">
+        
+        <SeekBar
+            android:id="@+id/zoomSlider"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:rotation="270"
+            android:layout_gravity="center" />
+    </FrameLayout>
+</LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView

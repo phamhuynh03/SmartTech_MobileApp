@@ -2,8 +2,10 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +16,15 @@ import java.util.List;
 
 public class ModelViewerActivity extends AppCompatActivity {
 
-    private ImageView centerImageView; // ImageView để hiển thị ảnh
+    private ImageView centerImageView; // ImageView to display image
+    private SeekBar zoomSlider; // Slider for zoom control
+    private View joystickBase; // Base of the joystick
+    private View joystickHandle; // Handle of the joystick
+    
+    private float baseScale = 1.0f;
+    private float lastTouchX, lastTouchY;
+    private float objPosX = 0, objPosY = 0;
+    private boolean joystickActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,78 @@ public class ModelViewerActivity extends AppCompatActivity {
         });
 
         centerImageView = findViewById(R.id.centerImageView);
+        
+        // Set up zoom slider
+        zoomSlider = findViewById(R.id.zoomSlider);
+        zoomSlider.setProgress(50); // Default at middle
+        zoomSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Convert 0-100 range to 0.5-1.5 scale factor
+                float scale = 0.5f + (progress / 100.0f);
+                centerImageView.setScaleX(scale);
+                centerImageView.setScaleY(scale);
+                baseScale = scale;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        
+        // Set up joystick
+        joystickBase = findViewById(R.id.joystickBase);
+        joystickHandle = findViewById(R.id.joystickHandle);
+        
+        joystickBase.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int action = event.getAction();
+                final float baseRadius = joystickBase.getWidth() / 2;
+                
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_MOVE:
+                        joystickActive = true;
+                        
+                        // Calculate joystick position
+                        float touchX = event.getX() - baseRadius;
+                        float touchY = event.getY() - baseRadius;
+                        
+                        // Limit movement to the base circle
+                        float distance = (float) Math.sqrt(touchX * touchX + touchY * touchY);
+                        if (distance > baseRadius) {
+                            touchX = touchX * baseRadius / distance;
+                            touchY = touchY * baseRadius / distance;
+                        }
+                        
+                        // Move joystick handle
+                        joystickHandle.setTranslationX(touchX);
+                        joystickHandle.setTranslationY(touchY);
+                        
+                        // Move the object based on joystick (scaled down movement)
+                        float moveFactorX = touchX / 10;
+                        float moveFactorY = touchY / 10;
+                        
+                        objPosX += moveFactorX;
+                        objPosY += moveFactorY;
+                        centerImageView.setTranslationX(objPosX);
+                        centerImageView.setTranslationY(objPosY);
+                        return true;
+                        
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        joystickActive = false;
+                        // Return joystick to center
+                        joystickHandle.setTranslationX(0);
+                        joystickHandle.setTranslationY(0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView3);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -43,6 +125,15 @@ public class ModelViewerActivity extends AppCompatActivity {
             @Override
             public void onButtonClick(int position) {
                 updateCenterImage(position);
+                // Reset position and scale when changing object
+                centerImageView.setTranslationX(0);
+                centerImageView.setTranslationY(0);
+                objPosX = 0;
+                objPosY = 0;
+                zoomSlider.setProgress(50);
+                centerImageView.setScaleX(1.0f);
+                centerImageView.setScaleY(1.0f);
+                baseScale = 1.0f;
             }
         });
         recyclerView.setAdapter(adapter);
