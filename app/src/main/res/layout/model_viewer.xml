@@ -1,116 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#1f472a"
-    tools:context=".ModelViewerActivity">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#1f472a" tools:context=".ModelViewerActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#efffef">
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="#efffef">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardBackgroundColor="#efffef">
+        <androidx.cardview.widget.CardView android:id="@+id/cardView1" android:layout_width="match_parent" android:layout_height="match_parent" app:cardBackgroundColor="#efffef">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="3D Model Viewer"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:fontFamily="@font/montserrat_semibold" android:text="3D Model Viewer" android:textAlignment="center" android:textColor="@color/black" android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                app:srcCompat="@drawable/arrow_out" />
+            <ImageView android:id="@+id/imageView" android:layout_width="30dp" android:layout_height="30dp" android:layout_marginLeft="15dp" android:layout_marginTop="15dp" android:layout_marginBottom="15dp" app:srcCompat="@drawable/arrow_out" />
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="540dp"
-            app:cardBackgroundColor="#efffef"
-            app:layout_constraintTop_toBottomOf="@+id/cardView1">
+        <androidx.cardview.widget.CardView android:id="@+id/cardView2" android:layout_width="match_parent" android:layout_height="540dp" app:cardBackgroundColor="#efffef" app:layout_constraintTop_toBottomOf="@+id/cardView1">
 
-            <ImageView
-                android:id="@+id/centerImageView"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:scaleType="centerInside"
-                app:srcCompat="@drawable/object_1" />
+            <ImageView android:id="@+id/centerImageView" android:layout_width="match_parent" android:layout_height="400dp" android:scaleType="centerInside" app:srcCompat="@drawable/object_1" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="bottom|center_horizontal" android:layout_marginBottom="20dp" android:orientation="horizontal" android:clipChildren="false" android:clipToPadding="false" android:gravity="center">
 
-            <!-- Control elements positioned at the bottom center -->
-           <!-- Control elements positioned at the bottom center -->
-<!-- Control elements positioned at the bottom center -->
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|center_horizontal"
-    android:layout_marginBottom="20dp"
-    android:orientation="horizontal"
-    android:gravity="center">
+                <FrameLayout android:id="@+id/joystickBase" android:layout_width="120dp" android:layout_height="120dp" android:background="@drawable/model_controller_base">
 
-    <!-- Centered Joystick -->
-    <FrameLayout
-        android:id="@+id/joystickBase"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:background="@drawable/model_controller_base">
-        
-        <View
-            android:id="@+id/joystickHandle"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="@drawable/model_controller_handle" />
-    </FrameLayout>
+                    <View android:id="@+id/joystickHandle" android:layout_width="60dp" android:layout_height="60dp" android:layout_gravity="center" android:background="@drawable/model_controller_handle" />
+                </FrameLayout>
 
-    <!-- Spacing between elements -->
-    <Space
-        android:layout_width="20dp"
-        android:layout_height="match_parent" />
-    
-    <!-- Custom vertical SeekBar container -->
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_gravity="center_vertical">
-        
-        <SeekBar
-            android:id="@+id/zoomSlider"
-            android:layout_width="120dp"
-            android:layout_height="48dp"
-            android:rotation="270"
-            android:layout_gravity="center" />
-    </FrameLayout>
-</LinearLayout>
+                <FrameLayout android:layout_width="wrap_content" android:layout_height="180dp" android:layout_gravity="center_vertical" android:layout_marginStart="-40dp" android:clipChildren="false" android:clipToPadding="false">
+
+                    <SeekBar android:id="@+id/zoomSlider" android:layout_width="180dp" android:layout_height="40dp" android:rotation="270" android:layout_gravity="center_vertical|start" android:progressDrawable="@drawable/slider_track" android:thumb="@drawable/slider_thumb" android:thumbOffset="0dp" android:background="@android:color/transparent" android:splitTrack="false" />
+                </FrameLayout>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardBackgroundColor="#efffef"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="100dp" app:cardBackgroundColor="#efffef" app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#1f472a" />
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView3" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#1f472a" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
