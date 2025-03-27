@@ -9,12 +9,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:backgroundTint="#efffef">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="match_parent"
             app:cardBackgroundColor="#efffef">
 
             <TextView
@@ -36,6 +37,48 @@
                 android:layout_marginBottom="15dp"
                 app:srcCompat="@drawable/arrow_out" />
         </androidx.cardview.widget.CardView>
+
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:id="@+id/barcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            app:layout_constraintTop_toBottomOf="@id/cardView3"
+            app:zxing_framing_rect_height="550dp"
+            app:zxing_framing_rect_width="500dp"
+            app:zxing_scanner_layout="@layout/zxing_barcode_scanner">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="500dp"
+                app:cardBackgroundColor="#efffef" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Please scan here!"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+        </com.journeyapps.barcodescanner.DecoratedBarcodeView>
+
+        <TextView
+            android:id="@+id/qr_code_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/barcode_scanner" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
