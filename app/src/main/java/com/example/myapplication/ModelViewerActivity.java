@@ -50,7 +50,7 @@ public class ModelViewerActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Convert 0-100 range to 0.5-1.5 scale factor
-                float scale = 0.5f + (progress / 100.0f);
+                float scale = 1.0f + (progress / 100.0f);
                 centerImageView.setScaleX(scale);
                 centerImageView.setScaleY(scale);
                 baseScale = scale;
@@ -94,8 +94,8 @@ public class ModelViewerActivity extends AppCompatActivity {
                         joystickHandle.setTranslationY(touchY);
                         
                         // Move the object based on joystick (scaled down movement)
-                        float moveFactorX = touchX / 10;
-                        float moveFactorY = touchY / 10;
+                        float moveFactorX = touchX / 20;
+                        float moveFactorY = touchY / 20;
                         
                         objPosX += moveFactorX;
                         objPosY += moveFactorY;
