@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Smart Tech</string>
+    <string name="info_obj1">Notebook</string>
+    <string name="info_obj2">Pencil case</string>
+    <string name="info_obj3">Schoolbag</string>
+    <string name="info_obj4">Globe model</string>
+    <string name="info_obj5">Scissors</string>
 </resources>

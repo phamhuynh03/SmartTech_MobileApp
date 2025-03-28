@@ -1,38 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#1f472a" tools:context=".ModelViewerActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1f472a"
+    tools:context=".ModelViewerActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="#efffef">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#efffef">
 
-        <androidx.cardview.widget.CardView android:id="@+id/cardView1" android:layout_width="match_parent" android:layout_height="match_parent" app:cardBackgroundColor="#efffef">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="#efffef">
 
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:fontFamily="@font/montserrat_semibold" android:text="3D Model Viewer" android:textAlignment="center" android:textColor="@color/black" android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="3D Model Viewer"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-            <ImageView android:id="@+id/imageView" android:layout_width="30dp" android:layout_height="30dp" android:layout_marginLeft="15dp" android:layout_marginTop="15dp" android:layout_marginBottom="15dp" app:srcCompat="@drawable/arrow_out" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                app:srcCompat="@drawable/arrow_out" />
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView android:id="@+id/cardView2" android:layout_width="match_parent" android:layout_height="540dp" app:cardBackgroundColor="#efffef" app:layout_constraintTop_toBottomOf="@+id/cardView1">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="540dp"
+            app:cardBackgroundColor="#efffef"
+            app:layout_constraintTop_toBottomOf="@+id/cardView1">
 
-            <ImageView android:id="@+id/centerImageView" android:layout_width="match_parent" android:layout_height="400dp" android:scaleType="centerInside" app:srcCompat="@drawable/object_1" />
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="bottom|center_horizontal" android:layout_marginBottom="20dp" android:orientation="horizontal" android:clipChildren="false" android:clipToPadding="false" android:gravity="center">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
 
-                <FrameLayout android:id="@+id/joystickBase" android:layout_width="120dp" android:layout_height="120dp" android:background="@drawable/model_controller_base">
+                <ImageView
+                    android:id="@+id/centerImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/object_1" />
 
-                    <View android:id="@+id/joystickHandle" android:layout_width="60dp" android:layout_height="60dp" android:layout_gravity="center" android:background="@drawable/model_controller_handle" />
+                <Button
+                    android:id="@+id/infoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="20dp"
+                    android:backgroundTint="#2c9e4b"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Info"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/infoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#80000000"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:gravity="center_horizontal"
+                    android:padding="8dp"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:id="@+id/joystickBase"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="50dp"
+                    android:background="@drawable/model_controller_base">
+
+                    <View
+                        android:id="@+id/joystickHandle"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/model_controller_handle" />
                 </FrameLayout>
 
-                <FrameLayout android:layout_width="wrap_content" android:layout_height="180dp" android:layout_gravity="center_vertical" android:layout_marginStart="-40dp" android:clipChildren="false" android:clipToPadding="false">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="-20dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-                    <SeekBar android:id="@+id/zoomSlider" android:layout_width="180dp" android:layout_height="40dp" android:rotation="270" android:layout_gravity="center_vertical|start" android:progressDrawable="@drawable/slider_track" android:thumb="@drawable/slider_thumb" android:thumbOffset="0dp" android:background="@android:color/transparent" android:splitTrack="false" />
+                    <SeekBar
+                        android:id="@+id/zoomSlider"
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical|start"
+                        android:background="@android:color/transparent"
+                        android:progressDrawable="@drawable/slider_track"
+                        android:rotation="270"
+                        android:splitTrack="false"
+                        android:thumb="@drawable/slider_thumb"
+                        android:thumbOffset="0dp" />
                 </FrameLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="100dp" app:cardBackgroundColor="#efffef" app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="#efffef"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
-            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView3" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#1f472a" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#1f472a" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

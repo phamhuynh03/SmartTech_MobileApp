@@ -10,9 +10,9 @@
 
     <item android:gravity="center">
         <shape android:shape="oval">
-            <solid android:color="#1976D2" />
-            <stroke android:color="#FFFFFF" android:width="10dp" />
-            <size android:width="60dp" android:height="60dp" />
+            <solid android:color="#efffef" />
+            <stroke android:color="#2c9e4b" android:width="10dp" />
+            <size android:width="50dp" android:height="50dp" />
         </shape>
     </item>
 </layer-list>
